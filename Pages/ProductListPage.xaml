@@ -1,0 +1,41 @@
+﻿<Page x:Class="WpfAppPaper.Pages.ProductListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfAppPaper.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductListPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <StackPanel HorizontalAlignment="Left">
+                <TextBlock Text="Введите для поиска"/>
+                <TextBox Name="NameSearchTB" Width="300" Height="30"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0">
+                <TextBlock Text="Сортировка"/>
+                <ComboBox Name="SortCB"/>
+            </StackPanel> 
+            <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0">
+                <TextBlock Text="Фильтрация"/>
+                <ComboBox Name="FilterCB"/>
+            </StackPanel>
+        </DockPanel>
+        <Border BorderThickness="3" Grid.Row="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled" >
+                <WrapPanel Name ="ProductWrap" ItemWidth="750" ItemHeight="200"/>
+            </ScrollViewer>
+        </Border>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="PrevPageButton" Content="&lt;" Background="Transparent" BorderBrush="Transparent" Click="PrevPage_Click"/>
+            <Button Name="NextPageButton" Content=">" Background="Transparent" BorderBrush="Transparent" Margin="10 0 0 0" Click="NextPage_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
