@@ -13,10 +13,10 @@ namespace WpfAppPaper.DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BananasEntities : DbContext
+    public partial class WipingEntities : DbContext
     {
-        public BananasEntities()
-            : base("name=BananasEntities")
+        public WipingEntities()
+            : base("name=WipingEntities")
         {
         }
     
@@ -34,7 +34,6 @@ namespace WpfAppPaper.DataBase
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<ProductType> ProductType { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Units> Units { get; set; }
         public virtual DbSet<Warehouse> Warehouse { get; set; }
     }

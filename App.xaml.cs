@@ -14,7 +14,7 @@ namespace WpfAppPaper
     /// </summary>
     public partial class App : Application
     {
-        public static BananasEntities DB = new BananasEntities();
+        public static WipingEntities DB = new WipingEntities();
 
     }
 }

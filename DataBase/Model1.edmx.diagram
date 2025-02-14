@@ -4,29 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2ce83cd2d43442f58dd33ce91b65dc7a" Name="Diagram1">
-        <EntityTypeShape EntityType="BananasModel.Agents" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.Materials" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.MaterialSuppliers" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.MaterialTypes" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.OrderDetails" Width="1.5" PointX="10.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.Orders" Width="1.5" PointX="8" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.Products" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.ProductType" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.Suppliers" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.Units" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="BananasModel.Warehouse" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="BananasModel.FK_Orders_Agent" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_Materials_MaterialType" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_Materials_Unit" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_MaterialSuppliers_Material" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_Warehouse_Materials" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_MaterialSuppliers_Supplier" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_OrderDetails_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_OrderDetails_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_Products_ProductType" ManuallyRouted="false" />
-        <AssociationConnector Association="BananasModel.FK_Warehouse_Products" ManuallyRouted="false" />
+      <Diagram DiagramId="7d662c1ae26e45ed9f0ef75df4273b9c" Name="Diagram1">
+        <EntityTypeShape EntityType="WipingModel.Agents" Width="1.5" PointX="5.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.Materials" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.MaterialSuppliers" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.MaterialTypes" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.OrderDetails" Width="1.5" PointX="10.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.Orders" Width="1.5" PointX="8" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.Products" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.ProductType" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.Suppliers" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.Units" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WipingModel.Warehouse" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="WipingModel.FK_Orders_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_Materials_MaterialType" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_Materials_Unit" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_MaterialSuppliers_Material" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_Warehouse_Materials" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_MaterialSuppliers_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_OrderDetails_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_OrderDetails_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_Products_ProductType" ManuallyRouted="false" />
+        <AssociationConnector Association="WipingModel.FK_Warehouse_Products" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

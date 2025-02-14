@@ -36,18 +36,25 @@ namespace WpfAppPaper.UserControlls
         {
             ProdIMG.Source = GetimageSources(_product.ProductImage);
             ArticlProdTB.Text = _product.Article;
-            PriceProdTB.Text = _product.Price.ToString();
             TypeNameProdTB.Text = $"{_product.ProductType.Name} | {_product.ProductName}";
-            var materials = App.DB.Products
+            IQueryable<Materials> materials = App.DB.Products
                 .Where(p => p.ProductID == _product.ProductID)
                     .Join(App.DB.Warehouse, p => p.ProductID, w => w.ProductID, (p, w) => w)
-                    .Join(App.DB.Materials, w => w.MaterialID, m => m.MaterialID, (w, m) => m.MaterialName)
-                    .ToList();
+                    .Join(App.DB.Materials, w => w.MaterialID, m => m.MaterialID, (w, m) => m);
+
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.Append("Материалы: ");
             foreach (var s in materials)
-                stringBuilder.Append(s.ToString() + " ");
+                stringBuilder.Append(s.MaterialName + " ");
             MaterialProdTB.Text = $"{stringBuilder}";
+
+            float prodPrice = 0;
+            foreach (var s in materials)
+                prodPrice += (float)s.Cost;
+            if (prodPrice == 0)
+                PriceProdTB.Text = _product.Price.ToString();
+            else
+                PriceProdTB.Text = prodPrice.ToString();
         }
 
         private BitmapImage GetimageSources(byte[] byteImage)
