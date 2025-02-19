@@ -21,14 +21,22 @@
             </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0">
                 <TextBlock Text="Сортировка"/>
-                <ComboBox Name="SortCB"/>
-            </StackPanel> 
+                <ComboBox Name="SortListCB" SelectionChanged="SortListCB_SelectionChanged">
+                    <TextBlock>По умолчаниб</TextBlock>
+                    <TextBlock>По наименование</TextBlock>
+                    <TextBlock>Стоимость</TextBlock>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0" VerticalAlignment="Center" Orientation="Horizontal">
+                <CheckBox x:Name="AscendingSortCheckB" Checked="AscendingSortCheckB_Checked" Unchecked="AscendingSortCheckB_Checked" VerticalAlignment="Center"/>
+                <Image Source="\Resources\upDownImage.png" Width="30"/>
+            </StackPanel>
             <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0">
                 <TextBlock Text="Фильтрация"/>
                 <ComboBox Name="TypeFilterCB" SelectionChanged="TypeFilterCB_SelectionChanged"/>
             </StackPanel>
         </DockPanel>
-        <Border BorderThickness="3" Grid.Row="1">
+        <Border BorderThickness="3" Grid.Row="1" >
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" >
                 <WrapPanel Name ="ProductWrap" ItemWidth="750" ItemHeight="200"/>
             </ScrollViewer>

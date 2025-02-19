@@ -110,5 +110,40 @@ namespace WpfAppPaper.Pages
                 _filteredProducts = _allProducts.Where(x => x.ProductTypeID == (selectedProductType).ID);
             RefreshList();
         }
+
+        private void AscendingSortCheckB_Checked(object sender, RoutedEventArgs e)
+        {
+            SortByUniq();
+        }
+
+        private void SortListCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SortByUniq();
+        }
+
+        private void SortByUniq()
+        {
+            if (SortListCB.SelectedIndex == 0)
+            {
+                SearchText();
+            }
+            if (SortListCB.SelectedIndex == 1)
+            {
+                if (AscendingSortCheckB.IsChecked == true)
+                    _filteredProducts = _allProducts.OrderBy(x => x.ProductName).ToList();
+                else
+                    _filteredProducts = _allProducts.OrderByDescending(x => x.ProductName).ToList();
+            }
+            if (SortListCB.SelectedIndex == 2)
+            {
+                if (AscendingSortCheckB.IsChecked == true)
+
+                    _filteredProducts = _allProducts.OrderBy(x => x.Price).ToList();
+                else
+                    _filteredProducts = _allProducts.OrderByDescending(x => x.Price).ToList();
+
+            }
+            RefreshList();
+        }
     }
 }
