@@ -16,7 +16,7 @@
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Background" Value="#cefff9"/>
         </Style>
-        <Style TargetType="Border">
+        <Style TargetType="Border" x:Key="SimpleBorder">
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="1"/>
         </Style>

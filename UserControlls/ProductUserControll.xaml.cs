@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfAppPaper.DataBase;
+using WpfAppPaper.Pages;
 
 namespace WpfAppPaper.UserControlls
 {
@@ -70,6 +71,11 @@ namespace WpfAppPaper.UserControlls
             }
             else
                 return new BitmapImage(new Uri(@"\Resources\picture.png", UriKind.Relative));
+        }
+
+        private void EditProdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Current.Navigate(new AddEditProduct(_product));
         }
     }
 }
