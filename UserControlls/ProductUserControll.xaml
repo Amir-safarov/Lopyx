@@ -8,7 +8,7 @@
              d:DesignHeight="200" d:DesignWidth="780">
     <Border>
         <Button Background="Transparent" Name="EditProdBtn" Click="EditProdBtn_Click">
-            <Grid>
+            <Grid Width="780" Height="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="20*"/>

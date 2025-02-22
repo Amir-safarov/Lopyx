@@ -7,6 +7,8 @@ using WpfAppPaper.DataBase;
 using System.Collections.Generic;
 using System.Windows;
 using System.Text;
+using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WpfAppPaper.Pages
 {
@@ -16,13 +18,13 @@ namespace WpfAppPaper.Pages
     public partial class AddEditProduct : Page
     {
         private Products _product;
-
+        private byte[] _prodImageData;
         public AddEditProduct(Products product = null)
         {
             InitializeComponent();
             _product = product;
             LoadComponets();
-            UpdateProdData();
+            UpdateProdViewData();
         }
 
         private void LoadComponets()
@@ -37,15 +39,32 @@ namespace WpfAppPaper.Pages
                 AddMaterial.Visibility = Visibility.Hidden;
         }
 
-        private void UpdateProdData()
+        private void UpdateProdViewData()
         {
-            ProdIMG.Source = GetimageSources(_product.ProductImage);
+            if (_product == null)
+                return;
+            ProdIMG.Source = GetImageSources(_product.ProductImage);
             ArticlProdTB.Text = _product.Article;
             TypeProdCB.SelectedItem = _product.ProductType;
             NameProdTB.Text = $"{_product.ProductName}";
             UpdateMaterials();
             PriceProdTB.Text = _product.Price.ToString();
         }
+
+        private void UpdateProdData()
+        {
+            if (_product == null)
+                return;
+            if (_prodImageData != null)
+                _product.ProductImage = _prodImageData;
+            _product.Article = ArticlProdTB.Text;
+            _product.ProductTypeID = (TypeProdCB.SelectedItem as ProductType).ID;
+            _product.ProductName = NameProdTB.Text;
+            UpdateMaterials();
+            _product.Price = decimal.Parse(PriceProdTB.Text);
+        }
+
+
 
         private void UpdateMaterials()
         {
@@ -57,7 +76,7 @@ namespace WpfAppPaper.Pages
             MaterialProdList.ItemsSource = materials;
         }
 
-        private BitmapImage GetimageSources(byte[] byteImage)
+        private BitmapImage GetImageSources(byte[] byteImage)
         {
             if (byteImage != null)
             {
@@ -69,7 +88,7 @@ namespace WpfAppPaper.Pages
                 return image;
             }
             else
-                return new BitmapImage(new Uri(@"\Resources\picture.png", UriKind.Relative));
+                return null;
         }
 
         private void AddMaterial_Click(object sender, System.Windows.RoutedEventArgs e)
@@ -90,22 +109,51 @@ namespace WpfAppPaper.Pages
             };
             App.DB.Warehouse.Add(warehouse);
             UpdateMaterials();
-            //App.DB.SaveChanges();
+            if (_product != null)
+                App.DB.SaveChanges();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+
             if (_product == null)
             {
-                //TODO сделаит доавбление
-                StringBuilder stringBuilder = new StringBuilder();
-                if()
+                StringBuilder error = new StringBuilder();
+                if (string.IsNullOrWhiteSpace(NameProdTB.Text))
+                    error.AppendLine("Наименование продукта не ведено!");
+                if ((TypeProdCB.SelectedItem as ProductType) == null)
+                    error.AppendLine("Не выбран тип продукта!");
+                if (string.IsNullOrWhiteSpace(PriceProdTB.Text))
+                    error.AppendLine("Цена для поставщика не введена!");
+                if (string.IsNullOrWhiteSpace(ArticlProdTB.Text))
+                    error.AppendLine("Артикул продукта пуст!");
+                if (error.Length > 0)
+                {
+                    MessageBox.Show($"{error}", "Ошибка");
+                    return;
+                }
+                else
+                {
+                    Products products = new Products()
+                    {
+                        Price = int.Parse(PriceProdTB.Text),
+                        Article = ArticlProdTB.Text,
+                        ProductImage = _prodImageData,
+                        ProductName = NameProdTB.Text,
+                        ProductTypeID = (TypeProdCB.SelectedItem as ProductType).ID
+                    };
+                    App.DB.Products.Add(products);
+                    App.DB.SaveChanges();
+                    MessageBox.Show("Запись добавлена");
+                }
             }
             else
             {
+                UpdateProdData();
                 App.DB.SaveChanges();
                 MessageBox.Show("Запись обновленны");
             }
+            NavigationService.Navigate(new ProductListPage());
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)
@@ -113,9 +161,30 @@ namespace WpfAppPaper.Pages
             NavigationService.Navigate(new ProductListPage());
         }
 
+        private void EditImage()
+        {
+            OpenFileDialog openFile = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|All files (*.*)|*.*"
+            };
+            if (openFile.ShowDialog().GetValueOrDefault())
+            {
+                _prodImageData = File.ReadAllBytes(openFile.FileName);
+                ProdIMG.Source = new BitmapImage(new Uri(openFile.FileName)); ;
+            }
+            if (_product != null)
+                App.DB.SaveChanges();
+        }
+
         private void EditProdIMGBtn_Click(object sender, RoutedEventArgs e)
         {
+            EditImage();
+        }
 
+        private void PriceProdTB_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0))
+                e.Handled = true;
         }
     }
 }

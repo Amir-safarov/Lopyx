@@ -35,6 +35,7 @@
                 <TextBlock Text="Фильтрация"/>
                 <ComboBox Name="TypeFilterCB" SelectionChanged="TypeFilterCB_SelectionChanged"/>
             </StackPanel>
+            <Button Name="AddNewProdBtn" Content="Добавить продукт" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AddNewProdBtn_Click"/>
         </DockPanel>
         <Border BorderThickness="3" Grid.Row="1" >
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" >

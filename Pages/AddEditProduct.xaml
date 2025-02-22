@@ -22,7 +22,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Button Name="EditProdIMGBtn_Click" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="Transparent" Click="EditProdIMGBtn_Click">
+        <Button Name="EditProdIMGBtn" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Background="Transparent" Click="EditProdIMGBtn_Click">
             <Image Name="ProdIMG"/>
         </Button>
         <StackPanel Grid.Column="2" Grid.Row="1" Margin="1,1,1,1">
@@ -38,7 +38,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text ="Цена продукта для агента:" VerticalAlignment="Center"/>
-                <TextBox Name="PriceProdTB" Width="200" Margin="10 0 0 0"/>
+                <TextBox Name="PriceProdTB" Width="200" Margin="10 0 0 0" PreviewTextInput="PriceProdTB_PreviewTextInput"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2">
                 <TextBlock Text ="Артикул:" VerticalAlignment="Center"/>

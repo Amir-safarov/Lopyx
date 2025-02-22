@@ -145,5 +145,10 @@ namespace WpfAppPaper.Pages
             }
             RefreshList();
         }
+
+        private void AddNewProdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddEditProduct());
+        }
     }
 }
