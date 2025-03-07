@@ -8,7 +8,7 @@ namespace WpfAppPaper
     /// </summary>
     public partial class App : Application
     {
-        public static WipingEntities DB = new WipingEntities();
+        public static WipingEntities1 DB = new WipingEntities1();
 
     }
 }

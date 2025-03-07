@@ -36,8 +36,8 @@ namespace WpfAppPaper.UserControlls
         private void UpdateData()
         {
             ProdIMG.Source = GetimageSources(_product.ProductImage);
-            ArticlProdTB.Text = _product.Article;
-            TypeNameProdTB.Text = $"{_product.ProductType.Name} | {_product.ProductName}";
+            ArticlProdTB.Text = $"Артикул: {_product.Article}";
+            TypeNameProdTB.Text = $"Тип: {_product.ProductType.Name} | Наименование: {_product.ProductName}";
             IQueryable<Materials> materials = App.DB.Products
                 .Where(p => p.ProductID == _product.ProductID)
                     .Join(App.DB.Warehouse, p => p.ProductID, w => w.ProductID, (p, w) => w)
@@ -53,9 +53,9 @@ namespace WpfAppPaper.UserControlls
             foreach (var s in materials)
                 prodPrice += (float)s.Cost;
             if (prodPrice == 0)
-                PriceProdTB.Text = _product.Price.ToString();
+                PriceProdTB.Text = $"Стоимость: {_product.Price}";
             else
-                PriceProdTB.Text = prodPrice.ToString();
+                PriceProdTB.Text = $"Стоимость: {prodPrice}";
         }
 
         private BitmapImage GetimageSources(byte[] byteImage)

@@ -13,10 +13,10 @@ namespace WpfAppPaper.DataBase
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WipingEntities : DbContext
+    public partial class WipingEntities1 : DbContext
     {
-        public WipingEntities()
-            : base("name=WipingEntities")
+        public WipingEntities1()
+            : base("name=WipingEntities1")
         {
         }
     

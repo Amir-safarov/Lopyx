@@ -35,8 +35,13 @@ namespace WpfAppPaper.Pages
             MaterialsCB.ItemsSource = App.DB.Materials.ToList();
             MaterialsCB.DisplayMemberPath = "MaterialName";
 
-            if (_product == null)
+            if (!IsHaveProduct())
+            {
                 AddMaterial.Visibility = Visibility.Hidden;
+                RemoveSelectedMaterialBtn.Visibility = Visibility.Hidden;
+                RemoveBtn.Visibility = Visibility.Collapsed;
+            }
+
         }
 
         private void UpdateProdViewData()
@@ -108,15 +113,14 @@ namespace WpfAppPaper.Pages
                 Quantity = 1
             };
             App.DB.Warehouse.Add(warehouse);
+            App.DB.SaveChanges();
             UpdateMaterials();
-            if (_product != null)
-                App.DB.SaveChanges();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
 
-            if (_product == null)
+            if (IsHaveProduct())
             {
                 StringBuilder error = new StringBuilder();
                 if (string.IsNullOrWhiteSpace(NameProdTB.Text))
@@ -185,6 +189,37 @@ namespace WpfAppPaper.Pages
         {
             if (!char.IsDigit(e.Text, 0))
                 e.Handled = true;
+        }
+
+        private void RemoveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!IsHaveProduct())
+                return;
+            App.DB.Products.Remove(_product);
+            App.DB.SaveChanges();
+            MainWindow.Current.Navigate(new ProductListPage());
+        }
+
+        private bool IsHaveProduct()
+        {
+            return _product == null ? false : true;
+        }
+
+        private void RemoveSelectedMaterialBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Materials selectedMaterial = MaterialProdList.SelectedItem as Materials;
+            if (selectedMaterial == null)
+                return;
+            var warehouseRecord = App.DB.Warehouse.FirstOrDefault(w => w.ProductID == _product.ProductID && w.MaterialID == selectedMaterial.MaterialID);
+
+            if (warehouseRecord != null)
+            {
+                App.DB.Warehouse.Remove(warehouseRecord);
+                App.DB.SaveChanges();
+
+                UpdateMaterials();
+            }
+
         }
     }
 }
