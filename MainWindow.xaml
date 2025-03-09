@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAppPaper"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="Lopyx" Height="500" Width="800" Icon ="\Resources\logo.png">
     <Grid>
         <Frame Name="MainFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
