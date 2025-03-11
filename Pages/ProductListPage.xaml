@@ -14,37 +14,45 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <DockPanel>
+
+        <DockPanel Margin="5">
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Text="Введите для поиска"/>
                 <TextBox Name="NameSearchTB" Width="300" Height="30" TextChanged="NameSearchTB_TextChanged"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0">
+
+            <StackPanel HorizontalAlignment="Left" Margin="10,0,0,0">
                 <TextBlock Text="Сортировка"/>
                 <ComboBox Name="SortListCB" SelectionChanged="SortListCB_SelectionChanged">
-                    <TextBlock>По умолчаниб</TextBlock>
-                    <TextBlock>По наименование</TextBlock>
-                    <TextBlock>Стоимость</TextBlock>
+                    <ComboBoxItem Content="По умолчанию"/>
+                    <ComboBoxItem Content="По наименованию"/>
+                    <ComboBoxItem Content="По стоимости"/>
                 </ComboBox>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0" VerticalAlignment="Center" Orientation="Horizontal">
-                <CheckBox x:Name="AscendingSortCheckB" Checked="AscendingSortCheckB_Checked" Unchecked="AscendingSortCheckB_Checked" VerticalAlignment="Center"/>
+
+            <StackPanel HorizontalAlignment="Left" Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="AscendingSortCheckB" Checked="AscendingSortCheckB_Checked" Unchecked="AscendingSortCheckB_Checked"/>
                 <Image Source="\Resources\upDownImage.png" Width="30"/>
             </StackPanel>
-            <StackPanel HorizontalAlignment="Left" Margin="10 0 0 0">
+
+            <StackPanel HorizontalAlignment="Left" Margin="10,0,0,0">
                 <TextBlock Text="Фильтрация"/>
                 <ComboBox Name="TypeFilterCB" SelectionChanged="TypeFilterCB_SelectionChanged"/>
             </StackPanel>
+
             <Button Name="AddNewProdBtn" Content="Добавить продукт" HorizontalAlignment="Right" VerticalAlignment="Center" Click="AddNewProdBtn_Click"/>
         </DockPanel>
-        <Border BorderThickness="3" Grid.Row="1" >
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled" >
-                <WrapPanel Name ="ProductWrap" ItemWidth="750" ItemHeight="200"/>
+
+        <Border BorderThickness="1" Grid.Row="1" Margin="5">
+            <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+                <WrapPanel Name="ProductWrap" ItemWidth="750" ItemHeight="200"/>
             </ScrollViewer>
         </Border>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <Button Name="PrevPageButton" Content="&lt;" Background="Transparent" BorderBrush="Transparent" Click="PrevPage_Click"/>
-            <Button Name="NextPageButton" Content=">" Background="Transparent" BorderBrush="Transparent" Margin="10 0 0 0" Click="NextPage_Click"/>
+            <StackPanel x:Name="PageButtonsPanel" Orientation="Horizontal" Margin="5,0"/>
+            <Button Name="NextPageButton" Content=">" Background="Transparent" BorderBrush="Transparent" Click="NextPage_Click"/>
         </StackPanel>
     </Grid>
 </Page>

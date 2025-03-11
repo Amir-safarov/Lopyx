@@ -25,7 +25,7 @@ namespace WpfAppPaper.DataBase
         public string Article { get; set; }
         public string ProductName { get; set; }
         public int ProductTypeID { get; set; }
-        public decimal Price { get; set; }
+        public Nullable<decimal> Price { get; set; }
         public byte[] ProductImage { get; set; }
         public string ProdImagePath { get; set; }
     

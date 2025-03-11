@@ -35,7 +35,7 @@ namespace WpfAppPaper.Pages
             MaterialsCB.ItemsSource = App.DB.Materials.ToList();
             MaterialsCB.DisplayMemberPath = "MaterialName";
 
-            if (!IsHaveProduct())
+            if (ProductIsNull())
             {
                 AddMaterial.Visibility = Visibility.Hidden;
                 RemoveSelectedMaterialBtn.Visibility = Visibility.Hidden;
@@ -119,8 +119,7 @@ namespace WpfAppPaper.Pages
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
-            if (IsHaveProduct())
+            if (ProductIsNull())
             {
                 StringBuilder error = new StringBuilder();
                 if (string.IsNullOrWhiteSpace(NameProdTB.Text))
@@ -193,16 +192,16 @@ namespace WpfAppPaper.Pages
 
         private void RemoveBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!IsHaveProduct())
+            if (ProductIsNull())
                 return;
             App.DB.Products.Remove(_product);
             App.DB.SaveChanges();
             MainWindow.Current.Navigate(new ProductListPage());
         }
 
-        private bool IsHaveProduct()
+        private bool ProductIsNull()
         {
-            return _product == null ? false : true;
+            return _product == null;
         }
 
         private void RemoveSelectedMaterialBtn_Click(object sender, RoutedEventArgs e)
